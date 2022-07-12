@@ -1,20 +1,19 @@
 <template>
     <div>
-        <h2>Film</h2>
-        <div v-for="film, index in films" :key="index">
-            <h2>{{film.title}}</h2>
-            <h3>{{film.original_title}}</h3>
-            <img :src="justFlags(film.original_language)" alt="">
-            <h3>{{film.vote_average}}</h3>
+        <h2>Serie Tv</h2>
+        <div v-for="show, index in tvShow" :key="index">
+            <h2>{{show.name}}</h2>
+            <h3>{{show.original_name}}</h3>
+            <img :src="justFlags(show.original_language)" alt="">
+            <h3>{{show.vote_average}}</h3>
         </div>
-        
     </div>
 </template>
 <script>
 export default {
-    name: 'FilmCard',
+    name: 'ShowCard',
     props: {
-        films: Array,
+        tvShow: Array
     },
     methods: {
         justFlags(nation) {
