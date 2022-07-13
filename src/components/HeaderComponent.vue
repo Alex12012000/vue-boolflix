@@ -1,11 +1,12 @@
 <template>
-    <div>
+    <header>
         <input type="text" v-model="userInput" @keyup="$emit('userSearch', userInput)">
-    </div>
+    </header>
 </template>
+
 <script>
 export default {
-    name: 'SearchBar',
+    name: 'HeaderComponent',
     data(){
         return{
             userInput: '',
@@ -13,6 +14,7 @@ export default {
     },
 }
 </script>
-<style lang="">
+
+<style lang="scss">
     
 </style>
