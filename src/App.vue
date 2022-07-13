@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <HeaderComponent @userSearch="userInputs" />
-    <button @click="apiCall(), apiCallTv()">Search</button>
+    <HeaderComponent @userSearch="userInputs" @filmCall="apiCall" @tvCall="apiCallTv"/>
+    
     <main>
       <FilmCard :films="filmArray"/>
       <ShowCard :tvShow="tvShowArray"/>
     </main>
+
   </div>
 </template>
 
@@ -48,18 +49,29 @@ export default {
                 this.tvShowArray = response.data.results
             })
         },
+
+        topRatedFilm() {
+          axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=1a9d4ad303208935b21b8e064d453ab7&language=it-IT&page=1').then(response => {
+                this.filmArray = response.data.results
+            })
+        },
+
+        topRatedShow() {
+          axios.get('https://api.themoviedb.org/3/tv/top_rated?api_key=1a9d4ad303208935b21b8e064d453ab7&language=it-IT&page=1').then(response => {
+                this.tvShowArray = response.data.results
+            })
+        }
+    },
+    mounted() {
+      this.topRatedFilm()
+      this.topRatedShow()
     },
 
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './style/common.scss'; 
+
+
 </style>
